@@ -1,14 +1,17 @@
 import styled from 'styled-components';
-import { Main } from './layout/Main/Main';
+import { Main } from './layout/main/Main';
+import { Header } from './layout/header/Header';
+import { Footer } from './layout/footer/Footer';
+import { dataToDoLists } from './data/dataToDoList';
 
 
 function App() {
     return (
         <Wrapper>
-            <header>Header</header>
+            <Header/>
             <aside></aside>
-            <Main/>
-            <footer>Footer</footer>
+            <Main dataToDoLists={dataToDoLists}/>
+            <Footer/>
         </Wrapper>
     );
 }
