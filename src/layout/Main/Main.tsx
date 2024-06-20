@@ -8,19 +8,18 @@ import { dataToDoLists } from "../../data/dataToDoList"
 
 export function Main() {
     const [data, setData] = useState(dataToDoLists)
-
+ 
     function removeTask(idTDL: string ,idTask: number ) {
         setData(data.map((tdl)=>{
             if(tdl.idTDL === idTDL) {
-                tdl.tasks = tdl.tasks.filter((task) => task.id != idTask)
+                tdl.tasks = tdl.tasks.filter((task) => task.id !== idTask)
             }
             return tdl
         }))
-        console.log(idTDL)
-        console.log(idTask)
     }
 
     const ToDoLists = data.map((elem) => {
+
         return (
             <TDL idTDL={elem.idTDL} titleToDoList={elem.titleToDoList} tasks={elem.tasks} removeTask={removeTask}/>
         )

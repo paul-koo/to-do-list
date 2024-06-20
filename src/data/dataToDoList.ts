@@ -1,4 +1,3 @@
-import { dataToDoListType } from "../components/ToDoListComponents/TDL";
 
 
 export const dataToDoLists = [

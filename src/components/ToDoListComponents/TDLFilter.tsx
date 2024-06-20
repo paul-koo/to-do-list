@@ -1,12 +1,16 @@
 import styled from "styled-components";
 import { Button } from "../Button";
 
-export function TDLFilter() {
+type TDLFilterPropsType = {
+    filter: (filter: string) => void
+}
+
+export function TDLFilter(props: TDLFilterPropsType) {
     return (
         <TDLFilterWrapepr>
-            <Button title="All"/>
-            <Button title="Active"/>
-            <Button title="Completed"/>
+            <Button title="All" onclick={()=>props.filter("all")}/>
+            <Button title="Active" onclick={()=>props.filter("active")}/>
+            <Button title="Completed" onclick={()=>props.filter("completed")}/>
         </TDLFilterWrapepr>
     )
 }

@@ -3,9 +3,10 @@ import { TDLTask } from "./TDLTask"
 import { TDLFilter } from "./TDLFilter"
 import { TDLTitle } from "./TDLTitle"
 import { TDLAddTaskForm } from "./TDLAddTaskForm"
+import { useState } from "react"
 
 
-export type dataToDoListType = {
+export type TDLPropsType = {
     titleToDoList: string
     idTDL: string
     tasks: Array<TaskType>
@@ -21,8 +22,19 @@ type TaskType = {
 
 
 
-export function TDL(props: dataToDoListType) {
-    const toDoListTasksList = props.tasks.map(elem => {
+export function TDL(props: TDLPropsType) {
+    let [filter, setFilter] = useState('all')
+
+    let filterData = props.tasks
+
+    if (filter === 'active') {
+        filterData = props.tasks.filter((task) => task.isDone === false)
+    }
+    if (filter === 'completed') {
+        filterData = props.tasks.filter((task) => task.isDone === true)
+    }
+
+    const toDoListTasksList = filterData.map(elem => {
         return (
             <TDLTask idTDL={props.idTDL} id={elem.id} title={elem.title} isDone={elem.isDone} removeTask={(idTask) => props.removeTask(props.idTDL, idTask)}/>
         )
@@ -35,7 +47,7 @@ export function TDL(props: dataToDoListType) {
             <ul>
                 {toDoListTasksList}
             </ul>   
-            <TDLFilter/>
+            <TDLFilter filter={setFilter}/>
         </ToDoListWrapper>
     )
 }
