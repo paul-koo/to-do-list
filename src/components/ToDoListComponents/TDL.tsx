@@ -1,13 +1,14 @@
 import styled from "styled-components"
-import { ToDoListTitle } from "./ToDoListTitle"
-import { ToDoListAddTaskForm } from "./ToDoListAddTaskForm"
+import { ToDoListTitle } from "./TDLTitle"
+import { ToDoListAddTaskForm } from "./TDLAddTaskForm"
 
-import { ToDoListButtons } from "./ToDoListButtons"
-import { TaskType, ToDoListTask } from "./ToDoListTask"
+import { ToDoListButtons } from "./TDLButtons"
+import { TaskType, ToDoListTask } from "./TDLTask"
 
 
 export type dataToDoListType = {
     titleToDoList: string
+    id: string
     tasks: Array<TaskType>
 }
 
@@ -20,7 +21,7 @@ export function ToDoList(props: dataToDoListType) {
     })
 
     return (
-        <ToDoListWrapper>
+        <ToDoListWrapper id={props.id}>
             <ToDoListTitle title={props.titleToDoList}/>
             <ToDoListAddTaskForm/>
             <ul>

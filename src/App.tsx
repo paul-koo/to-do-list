@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { Main } from './layout/main/Main';
 import { Header } from './layout/header/Header';
 import { Footer } from './layout/footer/Footer';
-import { dataToDoLists } from './data/dataToDoList';
 
 
 function App() {
@@ -10,7 +9,7 @@ function App() {
         <Wrapper>
             <Header/>
             <aside></aside>
-            <Main dataToDoLists={dataToDoLists}/>
+            <Main/>
             <Footer/>
         </Wrapper>
     );

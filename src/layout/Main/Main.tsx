@@ -1,17 +1,17 @@
 import styled from "styled-components"
-import { ToDoList, dataToDoListType } from "../../components/ToDoListComponents/ToDoList"
-
-
-type MainPropsType = {
-    dataToDoLists: Array<dataToDoListType>
-}
+import { ToDoList, dataToDoListType } from "../../components/ToDoListComponents/TDL"
+import { useState } from "react"
+import { dataToDoLists } from "../../data/dataToDoList"
 
 
 
-export function Main(props: MainPropsType) {
-    const ToDoLists = props.dataToDoLists.map((elem: dataToDoListType) => {
+
+export function Main() {
+    const [data, setData] = useState(dataToDoLists)
+
+    const ToDoLists = data.map((elem: dataToDoListType) => {
         return (
-            <ToDoList titleToDoList={elem.titleToDoList} tasks={elem.tasks}/>
+            <ToDoList id={elem.id} titleToDoList={elem.titleToDoList} tasks={elem.tasks}/>
         )
     })
 
