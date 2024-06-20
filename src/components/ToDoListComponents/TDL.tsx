@@ -21,7 +21,7 @@ type TaskType = {
 
 
 
-export function ToDoList(props: dataToDoListType) {
+export function TDL(props: dataToDoListType) {
     const toDoListTasksList = props.tasks.map(elem => {
         return (
             <TDLTask idTDL={props.idTDL} id={elem.id} title={elem.title} isDone={elem.isDone} removeTask={(idTask) => props.removeTask(props.idTDL, idTask)}/>
@@ -41,6 +41,9 @@ export function ToDoList(props: dataToDoListType) {
 }
 
 const ToDoListWrapper = styled.li`
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
     min-width: 200px;
     max-width: 350px;
     min-height: 150px;

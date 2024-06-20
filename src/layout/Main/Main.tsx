@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { ToDoList } from "../../components/ToDoListComponents/TDL"
+import { TDL } from "../../components/ToDoListComponents/TDL"
 import { useState } from "react"
 import { dataToDoLists } from "../../data/dataToDoList"
 
@@ -22,7 +22,7 @@ export function Main() {
 
     const ToDoLists = data.map((elem) => {
         return (
-            <ToDoList idTDL={elem.idTDL} titleToDoList={elem.titleToDoList} tasks={elem.tasks} removeTask={removeTask}/>
+            <TDL idTDL={elem.idTDL} titleToDoList={elem.titleToDoList} tasks={elem.tasks} removeTask={removeTask}/>
         )
     })
 

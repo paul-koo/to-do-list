@@ -12,8 +12,8 @@ export type TDLTaskPropsType = {
 export function TDLTask(props: TDLTaskPropsType) {
     return (
         <Li>
-            <Label>{props.title}<input type="checkbox" required={props.isDone}/></Label>
-            <Button title={"-"} onclick={()=>props.removeTask( props.id)}/>
+            <Label><input type="checkbox" required={props.isDone}/>{props.title}</Label>
+            <Button title={"-"} onclick={()=>props.removeTask(props.id)}/>
         </Li>
     )
 }
