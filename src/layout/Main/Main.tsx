@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { ToDoList, dataToDoListType } from "../../components/ToDoListComponents/TDL"
+import { ToDoList } from "../../components/ToDoListComponents/TDL"
 import { useState } from "react"
 import { dataToDoLists } from "../../data/dataToDoList"
 
@@ -9,9 +9,20 @@ import { dataToDoLists } from "../../data/dataToDoList"
 export function Main() {
     const [data, setData] = useState(dataToDoLists)
 
-    const ToDoLists = data.map((elem: dataToDoListType) => {
+    function removeTask(idTDL: string ,idTask: number ) {
+        setData(data.map((tdl)=>{
+            if(tdl.idTDL === idTDL) {
+                tdl.tasks = tdl.tasks.filter((task) => task.id != idTask)
+            }
+            return tdl
+        }))
+        console.log(idTDL)
+        console.log(idTask)
+    }
+
+    const ToDoLists = data.map((elem) => {
         return (
-            <ToDoList id={elem.id} titleToDoList={elem.titleToDoList} tasks={elem.tasks}/>
+            <ToDoList idTDL={elem.idTDL} titleToDoList={elem.titleToDoList} tasks={elem.tasks} removeTask={removeTask}/>
         )
     })
 

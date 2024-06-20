@@ -1,33 +1,41 @@
 import styled from "styled-components"
-import { ToDoListTitle } from "./TDLTitle"
-import { ToDoListAddTaskForm } from "./TDLAddTaskForm"
-
-import { ToDoListButtons } from "./TDLButtons"
-import { TaskType, ToDoListTask } from "./TDLTask"
+import { TDLTask } from "./TDLTask"
+import { TDLFilter } from "./TDLFilter"
+import { TDLTitle } from "./TDLTitle"
+import { TDLAddTaskForm } from "./TDLAddTaskForm"
 
 
 export type dataToDoListType = {
     titleToDoList: string
-    id: string
+    idTDL: string
     tasks: Array<TaskType>
+    removeTask: (idTDL: string, idTask: number)=>void
 }
+
+type TaskType = {
+    id: number
+    title: string
+    isDone: boolean
+}
+
+
 
 
 export function ToDoList(props: dataToDoListType) {
     const toDoListTasksList = props.tasks.map(elem => {
         return (
-            <ToDoListTask id={elem.id} title={elem.title} isDone={elem.isDone}/>
+            <TDLTask idTDL={props.idTDL} id={elem.id} title={elem.title} isDone={elem.isDone} removeTask={(idTask) => props.removeTask(props.idTDL, idTask)}/>
         )
     })
 
     return (
-        <ToDoListWrapper id={props.id}>
-            <ToDoListTitle title={props.titleToDoList}/>
-            <ToDoListAddTaskForm/>
+        <ToDoListWrapper id={props.idTDL}>
+            <TDLTitle title={props.titleToDoList}/>
+            <TDLAddTaskForm/>
             <ul>
                 {toDoListTasksList}
             </ul>   
-            <ToDoListButtons/>
+            <TDLFilter/>
         </ToDoListWrapper>
     )
 }

@@ -1,4 +1,4 @@
-export function ToDoListAddTaskForm() {
+export function TDLAddTaskForm() {
     return (
         <>
             <input type="text"></input>
