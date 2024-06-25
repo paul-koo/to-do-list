@@ -21,16 +21,6 @@ export function Main() {
   }
 
   function addTask(idTDL: string, newTask: string) {
-    // const newData = [...data];
-    // newData.map((elem) =>
-    //   elem.idTDL === idTDL
-    //     ? (elem.tasks = [
-    //         { id: uuidv4(), title: "newTask", isDone: false },
-    //         ...elem.tasks,
-    //       ])
-    //     : elem
-    // );
-    // setData(newData);
     setData(
       data.map((tdl) => {
         if (tdl.idTDL === idTDL)
@@ -43,6 +33,24 @@ export function Main() {
     );
   }
 
+  function changeStatusTask(
+    idTDL: string,
+    idTask: string | number,
+    value: boolean
+  ) {
+    const newStatus = data.map((tdl) => {
+      if (tdl.idTDL === idTDL) {
+        tdl.tasks = tdl.tasks.map((task) => {
+          if (task.id === idTask) task.isDone = value;
+          return task;
+        });
+      }
+      return tdl;
+    });
+    setData(newStatus);
+    console.log(newStatus);
+  }
+
   const ToDoLists = data.map((elem) => {
     return (
       <TDL
@@ -51,6 +59,7 @@ export function Main() {
         tasks={elem.tasks}
         removeTask={removeTask}
         addTask={addTask}
+        changeStatusTask={changeStatusTask}
       />
     );
   });

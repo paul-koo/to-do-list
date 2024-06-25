@@ -11,6 +11,11 @@ export type TDLPropsType = {
   tasks: Array<TaskType>;
   removeTask: (idTDL: string, idTask: number | string) => void;
   addTask: (idTDL: string, newTask: string) => void;
+  changeStatusTask: (
+    idTDL: string,
+    idTask: string | number,
+    value: boolean
+  ) => void;
 };
 
 export type TaskType = {
@@ -38,6 +43,9 @@ export function TDL(props: TDLPropsType) {
         title={elem.title}
         isDone={elem.isDone}
         removeTask={(idTask) => props.removeTask(props.idTDL, idTask)}
+        changeStatusTask={(idTask: string | number, value: boolean) =>
+          props.changeStatusTask(props.idTDL, idTask, value)
+        }
       />
     );
   });

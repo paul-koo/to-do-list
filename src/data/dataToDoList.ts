@@ -1,4 +1,5 @@
 import { TaskType } from "../components/ToDoListComponents/TDL";
+import { v4 as uuidv4 } from "uuid";
 
 type DataToDoListsType = {
     titleToDoList: string;
@@ -8,24 +9,24 @@ type DataToDoListsType = {
 export const dataToDoLists: DataToDoListsType = [
     {
         titleToDoList: "What to learn",
-        idTDL: "What to learn",
+        idTDL: uuidv4(),
         tasks: [
-            { id: 1, title: 'HTML&CSS', isDone: false },
-            { id: 2, title: 'JS', isDone: false },
-            { id: 3, title: 'ReactJS', isDone: false },
-            { id: 4, title: 'Redux', isDone: false },
+            { id: uuidv4(), title: 'HTML&CSS', isDone: false },
+            { id: uuidv4(), title: 'JS', isDone: false },
+            { id: uuidv4(), title: 'ReactJS', isDone: false },
+            { id: uuidv4(), title: 'Redux', isDone: false },
         ],
     },
     
 
     {
         titleToDoList: "What to reed",
-        idTDL: "What to reed",
+        idTDL: uuidv4(),
         tasks: [
-            { id: 1, title: 'HTML&CSS', isDone: false },
-            { id: 2, title: 'JS', isDone: false },
-            { id: 3, title: 'ReactJS', isDone: false },
-            { id: 4, title: 'Redux', isDone: false },
+            { id: uuidv4(), title: 'HTML&CSS', isDone: false },
+            { id: uuidv4(), title: 'JS', isDone: false },
+            { id: uuidv4(), title: 'ReactJS', isDone: false },
+            { id: uuidv4(), title: 'Redux', isDone: false },
         ],
     }
 ]

@@ -1,18 +1,31 @@
 import styled from "styled-components";
 import { Button } from "../Button";
+import { Input } from "../Input";
+import { ChangeEvent } from "react";
 
 export type TDLTaskPropsType = {
   id: number | string;
   title: string;
   isDone: boolean;
   removeTask: (idTask: number | string) => void;
+  changeStatusTask: (idTask: string | number, value: boolean) => void;
 };
 
 export function TDLTask(props: TDLTaskPropsType) {
+  // const [status, setStatus] = useState(props.isDone);
+
   return (
     <Li>
       <Label>
-        <input type="checkbox" />
+        <Input
+          type={"checkbox"}
+          checked={props.isDone}
+          callback={(event: ChangeEvent<HTMLInputElement>) => {
+            // setStatus(event.currentTarget.checked);
+            props.changeStatusTask(props.id, event.currentTarget.checked);
+            console.log(event.currentTarget.checked);
+          }}
+        />
         {props.title}
       </Label>
       <Button title={"-"} onclick={() => props.removeTask(props.id)} />
