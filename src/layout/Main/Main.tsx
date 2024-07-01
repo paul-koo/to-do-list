@@ -3,6 +3,7 @@ import { TDL } from "../../components/ToDoListComponents/TDL";
 import { useState } from "react";
 import { dataToDoLists } from "../../data/dataToDoList";
 import { v4 as uuidv4 } from "uuid";
+import { AddNewTDLForm } from "./addNewTDLForm/AddNewTDLForm";
 
 export function Main() {
   const [data, setData] = useState(dataToDoLists);
@@ -67,6 +68,7 @@ export function Main() {
   return (
     <MainWrapper>
       <Ul>{ToDoLists}</Ul>
+      <AddNewTDLForm />
     </MainWrapper>
   );
 }
@@ -74,6 +76,9 @@ export function Main() {
 const MainWrapper = styled.main`
   max-width: 1170px;
   width: 100%;
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
   margin: 0 auto;
   padding: 15px;
   border: 1px solid red;
