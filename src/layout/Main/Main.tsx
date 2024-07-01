@@ -52,6 +52,18 @@ export function Main() {
     console.log(newStatus);
   }
 
+  function addTDL(TDLTitle: string) {
+    setData([
+      ...data,
+      {
+        titleToDoList: TDLTitle,
+        idTDL: uuidv4(),
+        tasks: [],
+      },
+    ]);
+    console.log(data);
+  }
+
   const ToDoLists = data.map((elem) => {
     return (
       <TDL
@@ -68,7 +80,7 @@ export function Main() {
   return (
     <MainWrapper>
       <Ul>{ToDoLists}</Ul>
-      <AddNewTDLForm />
+      <AddNewTDLForm addTDL={addTDL} />
     </MainWrapper>
   );
 }

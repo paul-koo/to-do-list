@@ -20,8 +20,7 @@ export function TDLAddTaskForm(props: TDLAddTaskFormPropsType) {
 
   const onKeyUpInputHandler = (event: KeyboardEvent) => {
     if (event.key === "Enter") {
-      props.addTask(input);
-      setInput("");
+      onClickButtonHandler();
     }
   };
 

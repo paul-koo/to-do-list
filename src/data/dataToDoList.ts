@@ -7,18 +7,7 @@ type DataToDoListsType = {
     tasks: Array<TaskType>;}[]
 
 export const dataToDoLists: DataToDoListsType = [
-    {
-        titleToDoList: "What to learn",
-        idTDL: uuidv4(),
-        tasks: [
-            { id: uuidv4(), title: 'HTML&CSS', isDone: false },
-            { id: uuidv4(), title: 'JS', isDone: false },
-            { id: uuidv4(), title: 'ReactJS', isDone: false },
-            { id: uuidv4(), title: 'Redux', isDone: false },
-        ],
-    },
     
-
     {
         titleToDoList: "What to reed",
         idTDL: uuidv4(),
