@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Button } from "../Button";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, KeyboardEvent, useState } from "react";
 import { Input } from "../Input";
 
 type TDLAddTaskFormPropsType = {
@@ -18,9 +18,21 @@ export function TDLAddTaskForm(props: TDLAddTaskFormPropsType) {
     setInput(event.currentTarget.value);
   };
 
+  const onKeyUpInputHandler = (event: KeyboardEvent) => {
+    if (event.key === "Enter") {
+      props.addTask(input);
+      setInput("");
+    }
+  };
+
   return (
     <TDLAddTaskFormWrapper>
-      <Input value={input} type={"text"} callback={onChangeInputHandler} />
+      <Input
+        value={input}
+        type={"text"}
+        callback={onChangeInputHandler}
+        callbackOnKeyUp={onKeyUpInputHandler}
+      />
       <Button title="+" onclick={onClickButtonHandler} />
     </TDLAddTaskFormWrapper>
   );
