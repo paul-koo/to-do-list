@@ -10,8 +10,10 @@ export function TDLAddTaskForm(props: TDLAddTaskFormPropsType) {
   const [input, setInput] = useState("");
 
   const onClickButtonHandler = () => {
-    props.addTask(input);
-    setInput("");
+    if (input) {
+      props.addTask(input);
+      setInput("");
+    }
   };
 
   const onChangeInputHandler = (event: ChangeEvent<HTMLInputElement>) => {
