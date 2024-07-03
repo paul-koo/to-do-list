@@ -60,9 +60,9 @@ export function TDL(props: TDLPropsType) {
         addTask={(newTask: string) => props.addTask(props.idTDL, newTask)}
       />
       <ul ref={listRef}>
-        {toDoListTasksList.length === 0 ? "Тасок нет" : toDoListTasksList}
+        {toDoListTasksList.length === 0 ? "No tasks" : toDoListTasksList}
       </ul>
-      <TDLFilter filter={setFilter} />
+      <TDLFilter changeFilter={setFilter} filterStatus={filter} />
     </ToDoListWrapper>
   );
 }
@@ -71,9 +71,8 @@ const ToDoListWrapper = styled.li`
   display: flex;
   flex-direction: column;
   gap: 10px;
-  min-width: 200px;
-  max-width: 350px;
-  min-height: 150px;
+  min-width: 270px;
+  min-height: 100%;
   background-color: #f1f2f4;
   border-radius: 1rem;
   padding: 15px;

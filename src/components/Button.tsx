@@ -7,6 +7,7 @@ type ButtonPropsType = {
   height?: string;
   backgroundColor?: string;
   color?: string;
+  padding?: string;
 };
 
 export function Button(props: ButtonPropsType) {
@@ -17,6 +18,7 @@ export function Button(props: ButtonPropsType) {
       height={props.height}
       backgroundColor={props.backgroundColor}
       color={props.color}
+      padding={props.padding}
     >
       {props.title}
     </Btn>
@@ -28,12 +30,14 @@ const Btn = styled.button<{
   height?: string;
   backgroundColor?: string;
   color?: string;
+  padding?: string;
 }>`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
-  min-width: 20px;
+  min-width: 50px;
   min-height: 20px;
   border-radius: 0.3rem;
   background-color: ${(props) => props.backgroundColor};
   color: ${(props) => props.color};
+  padding: ${(props) => props.padding};
 `;

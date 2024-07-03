@@ -43,8 +43,8 @@ export function AddNewTDLForm(props: AddNewTDLFormType) {
 const AddNewTDLFormWrapper = styled.div`
   display: flex;
   justify-content: center;
-  max-width: 200px;
-  width: 100%;
+  min-width: 270px;
+
   min-height: 50px;
   border-radius: 1rem;
   background-color: #ffffff3d;
@@ -57,7 +57,6 @@ const AddNewTDLFormWrapper = styled.div`
 
 const Title = styled.div<{ state: boolean }>`
   display: flex;
-  flex-grow: 1;
   justify-content: center;
   align-items: center;
 

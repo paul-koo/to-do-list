@@ -31,6 +31,7 @@ export function TDLAddTaskForm(props: TDLAddTaskFormPropsType) {
         type={"text"}
         callback={onChangeInputHandler}
         callbackOnKeyUp={onKeyUpInputHandler}
+        width="100%"
       />
       <Button title="+" onclick={onClickButtonHandler} />
     </TDLAddTaskFormWrapper>

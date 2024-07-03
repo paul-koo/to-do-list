@@ -23,11 +23,10 @@ export function TDLTask(props: TDLTaskPropsType) {
           callback={(event: ChangeEvent<HTMLInputElement>) => {
             // setStatus(event.currentTarget.checked);
             props.changeStatusTask(props.id, event.currentTarget.checked);
-            console.log(event.currentTarget.checked);
           }}
         />
-        {props.title}
       </Label>
+      <p>{props.title}</p>
       <Button title={"-"} onclick={() => props.removeTask(props.id)} />
     </Li>
   );
@@ -41,4 +40,8 @@ const Label = styled.label`
 const Li = styled.li`
   display: flex;
   gap: 10px;
+  & p {
+    display: inline-block;
+    width: 100%;
+  }
 `;

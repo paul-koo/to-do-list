@@ -82,8 +82,10 @@ export function Main() {
 
   return (
     <MainWrapper>
-      <Ul ref={listRef}>{ToDoLists}</Ul>
-      <AddNewTDLForm addTDL={addTDL} />
+      <Ul ref={listRef}>
+        {ToDoLists}
+        <AddNewTDLForm addTDL={addTDL} />
+      </Ul>
     </MainWrapper>
   );
 }
@@ -93,8 +95,6 @@ const MainWrapper = styled.main`
   width: 100%;
   display: flex;
   align-items: flex-start;
-  flex-wrap: wrap;
-  gap: 20px;
   margin: 0 auto;
   padding: 15px;
   border: 1px solid red;
@@ -103,7 +103,7 @@ const MainWrapper = styled.main`
 `;
 const Ul = styled.ul`
   display: flex;
-  gap: 20px;
+  gap: 19px;
   flex-wrap: wrap;
   align-items: flex-start;
 `;
