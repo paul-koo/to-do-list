@@ -4,6 +4,7 @@ import { TDLFilter } from "./TDLFilter";
 import { TDLTitle } from "./TDLTitle";
 import { TDLAddTaskForm } from "./TDLAddTaskForm";
 import { useState } from "react";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 export type TDLPropsType = {
   titleToDoList: string;
@@ -25,6 +26,8 @@ export type TaskType = {
 };
 
 export function TDL(props: TDLPropsType) {
+  const [listRef] = useAutoAnimate();
+
   let [filter, setFilter] = useState("all");
 
   let filterData = props.tasks;
@@ -56,7 +59,7 @@ export function TDL(props: TDLPropsType) {
       <TDLAddTaskForm
         addTask={(newTask: string) => props.addTask(props.idTDL, newTask)}
       />
-      <ul>
+      <ul ref={listRef}>
         {toDoListTasksList.length === 0 ? "Тасок нет" : toDoListTasksList}
       </ul>
       <TDLFilter filter={setFilter} />
@@ -71,7 +74,7 @@ const ToDoListWrapper = styled.li`
   min-width: 200px;
   max-width: 350px;
   min-height: 150px;
-  background-color: #ccff8ee9;
+  background-color: #f1f2f4;
   border-radius: 1rem;
   padding: 15px;
 `;

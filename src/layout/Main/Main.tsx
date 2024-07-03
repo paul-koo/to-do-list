@@ -4,9 +4,12 @@ import { useState } from "react";
 import { dataToDoLists } from "../../data/dataToDoList";
 import { v4 as uuidv4 } from "uuid";
 import { AddNewTDLForm } from "./addNewTDLForm/AddNewTDLForm";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 export function Main() {
   const [data, setData] = useState(dataToDoLists);
+
+  const [listRef] = useAutoAnimate();
 
   function removeTask(idTDL: string, idTask: string | number) {
     setData(
@@ -79,7 +82,7 @@ export function Main() {
 
   return (
     <MainWrapper>
-      <Ul>{ToDoLists}</Ul>
+      <Ul ref={listRef}>{ToDoLists}</Ul>
       <AddNewTDLForm addTDL={addTDL} />
     </MainWrapper>
   );
@@ -90,13 +93,17 @@ const MainWrapper = styled.main`
   width: 100%;
   display: flex;
   align-items: flex-start;
+  flex-wrap: wrap;
   gap: 20px;
   margin: 0 auto;
   padding: 15px;
   border: 1px solid red;
   flex-grow: 1;
+  background-color: rgb(205, 90, 145);
 `;
 const Ul = styled.ul`
   display: flex;
   gap: 20px;
+  flex-wrap: wrap;
+  align-items: flex-start;
 `;
