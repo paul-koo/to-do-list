@@ -7,6 +7,7 @@ export const defaultTheme = {
     font: {
       main: "#172b4d",
       secondary: "#FFFFFF",
+      third: "grey",
     },
   },
 };

@@ -14,7 +14,7 @@ export type TDLTaskPropsType = {
 
 export function TDLTask(props: TDLTaskPropsType) {
   return (
-    <Li>
+    <Li isDone={props.isDone}>
       <Label>
         <Input
           type={"checkbox"}
@@ -43,11 +43,15 @@ const Label = styled.label`
   gap: 10px;
 `;
 
-const Li = styled.li`
+const Li = styled.li<{ isDone: boolean }>`
   display: flex;
   gap: 10px;
   & p {
     display: inline-block;
     flex-grow: 1;
+    color: ${(props) =>
+      props.isDone
+        ? defaultTheme.color.font.third
+        : defaultTheme.color.font.main};
   }
 `;
