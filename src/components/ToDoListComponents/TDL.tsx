@@ -43,13 +43,6 @@ export function TDL(props: TDLPropsType) {
     return filterData;
   }
 
-  // if (filter === "active") {
-  //   filterData = props.tasks.filter((task) => task.isDone === false);
-  // }
-  // if (filter === "completed") {
-  //   filterData = props.tasks.filter((task) => task.isDone === true);
-  // }
-
   const toDoListTasksList = filterData().map((elem) => {
     return (
       <TDLTask
