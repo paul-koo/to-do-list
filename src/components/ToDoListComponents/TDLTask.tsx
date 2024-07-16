@@ -29,7 +29,7 @@ export function TDLTask(props: TDLTaskPropsType) {
         title={"-"}
         onclick={() => props.removeTask(props.id)}
         styled={{
-          width: "30px",
+          width: "20px",
           height: "20px",
           backgroundColor: `${defaultTheme.color.bgColor.main}`,
         }}
@@ -48,6 +48,6 @@ const Li = styled.li`
   gap: 10px;
   & p {
     display: inline-block;
-    width: 100%;
+    flex-grow: 1;
   }
 `;

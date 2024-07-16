@@ -2,6 +2,7 @@ import styled, { css } from "styled-components";
 import { Button } from "../../../../components/Button";
 import { Input } from "../../../../components/Input";
 import { ChangeEvent, KeyboardEvent, useState } from "react";
+import { defaultTheme } from "../../../../styles/Theme.styled";
 
 type AddFormPropsType = {
   state: boolean;
@@ -13,7 +14,6 @@ export function AddForm(props: AddFormPropsType) {
   const [inputState, setInputState] = useState("");
   const InputHandler = (event: ChangeEvent<HTMLInputElement>) => {
     setInputState(event.currentTarget.value);
-    console.log(inputState);
   };
 
   const addBtnOnClickHandler = () => {
@@ -45,13 +45,18 @@ export function AddForm(props: AddFormPropsType) {
         <Button
           title="Add"
           onclick={addBtnOnClickHandler}
-          width="50px"
-          backgroundColor="#0477dc"
-          color="white"
+          styled={{
+            backgroundColor: defaultTheme.color.bgColor.secondary,
+            minWidth: "50px",
+          }}
         />
         <Button
           title="X"
           onclick={() => props.setOpenState(props.state ? false : true)}
+          styled={{
+            backgroundColor: defaultTheme.color.bgColor.secondary,
+            minWidth: "50px",
+          }}
         />
       </ControlPanel>
     </AddFormWrapper>
@@ -61,6 +66,8 @@ export function AddForm(props: AddFormPropsType) {
 const AddFormWrapper = styled.div<{ state: boolean }>`
   padding: 5px;
   display: none;
+  flex-grow: 1;
+  margin: 0 10px;
   ${(props) =>
     props.state &&
     css`

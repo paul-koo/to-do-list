@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Button } from "../Button";
+import { defaultTheme } from "../../styles/Theme.styled";
 
 type TDLFilterPropsType = {
   changeFilter: (filter: string) => void;
@@ -14,7 +15,9 @@ export function TDLFilter(props: TDLFilterPropsType) {
         onclick={() => props.changeFilter("all")}
         styled={{
           backgroundColor:
-            props.filterStatus === "all" ? "rgb(205, 90, 145)" : "transparent",
+            props.filterStatus === "all"
+              ? defaultTheme.color.bgColor.main
+              : "transparent",
           padding: "5px",
           minWidth: "50px",
         }}

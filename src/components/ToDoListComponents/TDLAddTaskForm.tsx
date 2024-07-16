@@ -42,13 +42,13 @@ export function TDLAddTaskForm(props: TDLAddTaskFormPropsType) {
         callbackOnBlur={() => {
           setInputCorrect(true);
         }}
-        styled={{ width: "100%" }}
+        // styled={{ width: "100%" }}
       />
       <Button
         title="+"
         onclick={onClickButtonHandler}
         styled={{
-          width: "30px",
+          width: "20px",
           height: "20px",
           backgroundColor: `${defaultTheme.color.bgColor.main}`,
         }}
@@ -62,5 +62,8 @@ const TDLAddTaskFormWrapper = styled.div`
   gap: 10px;
   input::-webkit-input-placeholder {
     color: red;
+  }
+  input {
+    flex-grow: 1;
   }
 `;
