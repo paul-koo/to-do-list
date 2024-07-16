@@ -31,16 +31,26 @@ export function TDL(props: TDLPropsType) {
 
   let [filter, setFilter] = useState("all");
 
-  let filterData = props.tasks;
-
-  if (filter === "active") {
-    filterData = props.tasks.filter((task) => task.isDone === false);
+  function filterData() {
+    let filterData = props.tasks;
+    switch (filter) {
+      case "active":
+        filterData = props.tasks.filter((task) => task.isDone === false);
+        break;
+      case "completed":
+        filterData = props.tasks.filter((task) => task.isDone === true);
+    }
+    return filterData;
   }
-  if (filter === "completed") {
-    filterData = props.tasks.filter((task) => task.isDone === true);
-  }
 
-  const toDoListTasksList = filterData.map((elem) => {
+  // if (filter === "active") {
+  //   filterData = props.tasks.filter((task) => task.isDone === false);
+  // }
+  // if (filter === "completed") {
+  //   filterData = props.tasks.filter((task) => task.isDone === true);
+  // }
+
+  const toDoListTasksList = filterData().map((elem) => {
     return (
       <TDLTask
         id={elem.id}
