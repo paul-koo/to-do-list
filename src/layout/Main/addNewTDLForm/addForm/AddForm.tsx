@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 import { Button } from "../../../../components/Button";
 import { Input } from "../../../../components/Input";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, KeyboardEvent, useState } from "react";
 
 type AddFormPropsType = {
   state: boolean;
@@ -9,6 +9,7 @@ type AddFormPropsType = {
   addTDL: (TDLTitle: string) => void;
 };
 export function AddForm(props: AddFormPropsType) {
+  const [inputCorrect, setInputCorrect] = useState(true);
   const [inputState, setInputState] = useState("");
   const InputHandler = (event: ChangeEvent<HTMLInputElement>) => {
     setInputState(event.currentTarget.value);
@@ -16,16 +17,30 @@ export function AddForm(props: AddFormPropsType) {
   };
 
   const addBtnOnClickHandler = () => {
-    if (inputState) {
+    if (inputState.trim()) {
       props.addTDL(inputState);
-      setInputState("");
       props.setOpenState(props.state ? false : true);
+    } else {
+      setInputCorrect(false);
+    }
+    setInputState("");
+  };
+
+  const addBtnOnKeyUpHandler = (event: KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      addBtnOnClickHandler();
     }
   };
 
   return (
     <AddFormWrapper state={props.state}>
-      <Input value={inputState} type={"text"} callback={InputHandler}></Input>
+      <Input
+        value={inputState}
+        type={"text"}
+        callback={InputHandler}
+        placeholder={inputCorrect ? "" : "Error"}
+        callbackOnKeyUp={addBtnOnKeyUpHandler}
+      ></Input>
       <ControlPanel>
         <Button
           title="Add"

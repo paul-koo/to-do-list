@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { Button } from "../Button";
 import { Input } from "../Input";
 import { ChangeEvent } from "react";
+import { defaultTheme } from "../../styles/Theme.styled";
 
 export type TDLTaskPropsType = {
   id: number | string;
@@ -12,8 +13,6 @@ export type TDLTaskPropsType = {
 };
 
 export function TDLTask(props: TDLTaskPropsType) {
-  // const [status, setStatus] = useState(props.isDone);
-
   return (
     <Li>
       <Label>
@@ -21,13 +20,20 @@ export function TDLTask(props: TDLTaskPropsType) {
           type={"checkbox"}
           checked={props.isDone}
           callback={(event: ChangeEvent<HTMLInputElement>) => {
-            // setStatus(event.currentTarget.checked);
             props.changeStatusTask(props.id, event.currentTarget.checked);
           }}
         />
       </Label>
       <p>{props.title}</p>
-      <Button title={"-"} onclick={() => props.removeTask(props.id)} />
+      <Button
+        title={"-"}
+        onclick={() => props.removeTask(props.id)}
+        styled={{
+          width: "30px",
+          height: "20px",
+          backgroundColor: `${defaultTheme.color.bgColor.main}`,
+        }}
+      />
     </Li>
   );
 }

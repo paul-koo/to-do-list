@@ -5,9 +5,29 @@ type InputPropsType = {
   type: string;
   value?: string;
   checked?: boolean;
+  placeholder?: string;
+  classname?: string;
   callback: (event: ChangeEvent<HTMLInputElement>) => void;
   callbackOnKeyUp?: (event: KeyboardEvent<HTMLInputElement>) => void;
+  callbackOnBlur?: () => void;
   width?: string;
+  styled?: StyledPropsType;
+};
+
+export type StyledPropsType = {
+  width?: string;
+  height?: string;
+  backgroundColor?: string;
+  display?: string;
+  margin?: string;
+  padding?: string;
+  color?: string;
+  minWidth?: string;
+  minHeight?: string;
+  maxWidth?: string;
+  maxHeigth?: string;
+  borderRadius?: string;
+  border?: string;
 };
 
 export function Input(props: InputPropsType) {
@@ -15,14 +35,19 @@ export function Input(props: InputPropsType) {
     <InputStyled
       type={props.type}
       value={props.value}
+      placeholder={props.placeholder}
       checked={props.checked}
+      className={props.classname}
       onChange={props.callback}
       onKeyUp={props.callbackOnKeyUp}
-      width={props.width}
+      onBlur={props.callbackOnBlur}
+      styled={props.styled}
     ></InputStyled>
   );
 }
 
-const InputStyled = styled.input<{ width?: string }>`
-  width: ${(props) => props.width};
+const InputStyled = styled.input<{ styled?: StyledPropsType }>`
+  width: ${(props) => props.styled?.width || ""};
+  height: ${(props) => props.styled?.height || ""};
+  background-color: ${(props) => props.styled?.backgroundColor || ""};
 `;

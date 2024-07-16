@@ -5,6 +5,7 @@ import { TDLTitle } from "./TDLTitle";
 import { TDLAddTaskForm } from "./TDLAddTaskForm";
 import { useState } from "react";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
+import { defaultTheme } from "../../styles/Theme.styled";
 
 export type TDLPropsType = {
   titleToDoList: string;
@@ -73,7 +74,7 @@ const ToDoListWrapper = styled.li`
   gap: 10px;
   min-width: 270px;
   min-height: 100%;
-  background-color: #f1f2f4;
+  background-color: ${defaultTheme.color.bgColor.secondary};
   border-radius: 1rem;
   padding: 15px;
 `;

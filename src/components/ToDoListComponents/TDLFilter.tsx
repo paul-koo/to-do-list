@@ -12,28 +12,36 @@ export function TDLFilter(props: TDLFilterPropsType) {
       <Button
         title="All"
         onclick={() => props.changeFilter("all")}
-        backgroundColor={
-          props.filterStatus === "all" ? "rgb(205, 90, 145)" : "transparent"
-        }
-        padding="5px"
+        styled={{
+          backgroundColor:
+            props.filterStatus === "all" ? "rgb(205, 90, 145)" : "transparent",
+          padding: "5px",
+          minWidth: "50px",
+        }}
       />
       <Button
         title="Active"
         onclick={() => props.changeFilter("active")}
-        backgroundColor={
-          props.filterStatus === "active" ? "rgb(205, 90, 145)" : "transparent"
-        }
-        padding="5px"
+        styled={{
+          backgroundColor:
+            props.filterStatus === "active"
+              ? "rgb(205, 90, 145)"
+              : "transparent",
+          padding: "5px",
+          minWidth: "50px",
+        }}
       />
       <Button
         title="Completed"
         onclick={() => props.changeFilter("completed")}
-        backgroundColor={
-          props.filterStatus === "completed"
-            ? "rgb(205, 90, 145)"
-            : "transparent"
-        }
-        padding={"5px"}
+        styled={{
+          backgroundColor:
+            props.filterStatus === "completed"
+              ? "rgb(205, 90, 145)"
+              : "transparent",
+          padding: "5px",
+          minWidth: "50px",
+        }}
       />
     </TDLFilterWrapepr>
   );

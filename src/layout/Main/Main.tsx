@@ -5,6 +5,7 @@ import { dataToDoLists } from "../../data/dataToDoList";
 import { v4 as uuidv4 } from "uuid";
 import { AddNewTDLForm } from "./addNewTDLForm/AddNewTDLForm";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
+import { defaultTheme } from "../../styles/Theme.styled";
 
 export function Main() {
   const [data, setData] = useState(dataToDoLists);
@@ -99,7 +100,7 @@ const MainWrapper = styled.main`
   padding: 15px;
   border: 1px solid red;
   flex-grow: 1;
-  background-color: rgb(205, 90, 145);
+  background-color: ${defaultTheme.color.bgColor.main};
 `;
 const Ul = styled.ul`
   display: flex;
