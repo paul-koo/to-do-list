@@ -109,7 +109,7 @@ export function Main() {
         id={tdl.id}
         titleToDoList={tdl.title}
         tasks={filtredTask}
-        filter={tdl.filter}
+        filterStatus={tdl.filter}
         removeTask={removeTask}
         addTask={addTask}
         changeStatusTask={changeStatusTask}
