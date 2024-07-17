@@ -41,7 +41,7 @@ export function Main() {
 
   function addTask(idTDL: string, newTask: string) {
     const task = { id: uuidv4(), title: newTask, isDone: false };
-    setTasks({ ...tasks, [idTDL]: [...tasks[idTDL], task] });
+    setTasks({ ...tasks, [idTDL]: [task, ...tasks[idTDL]] });
   }
 
   function changeStatusTask(
@@ -58,15 +58,11 @@ export function Main() {
   }
 
   function addTDL(TDLTitle: string) {
-    // setData([
-    //   ...data,
-    //   {
-    //     titleToDoList: TDLTitle,
-    //     idTDL: uuidv4(),
-    //     tasks: [],
-    //   },
-    // ]);
-    // console.log(data);
+    let newId = uuidv4();
+    const newData = [...data];
+    newData.push({ id: newId, title: TDLTitle, filter: "all" });
+    setData(newData);
+    setTasks({ ...tasks, [newId]: [] });
   }
 
   function changeFilter(idTDL: string, filter: string) {
