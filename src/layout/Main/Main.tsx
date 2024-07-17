@@ -85,7 +85,7 @@ export function Main() {
     return (
       <TDL
         id={tdl.id}
-        titleToDoList={tdl.title}
+        title={tdl.title}
         tasks={filtredTask}
         filterStatus={tdl.filter}
         removeTask={removeTask}

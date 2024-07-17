@@ -1,13 +1,12 @@
 import styled from "styled-components";
 import { TDLTask } from "./TDLTask";
 import { TDLFilter } from "./TDLFilter";
-import { TDLTitle } from "./TDLTitle";
 import { TDLAddTaskForm } from "./TDLAddTaskForm";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { defaultTheme } from "../../styles/Theme.styled";
 
 export type TDLPropsType = {
-  titleToDoList: string;
+  title: string;
   id: string;
   tasks: Array<TaskType>;
   filterStatus: string;
@@ -42,7 +41,7 @@ export function TDL(props: TDLPropsType) {
 
   return (
     <ToDoListWrapper id={props.id}>
-      <TDLTitle title={props.titleToDoList} />
+      <h2>{props.title}</h2>
       <TDLAddTaskForm
         addTask={(newTask: string) => props.addTask(props.id, newTask)}
       />
