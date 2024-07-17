@@ -4,6 +4,7 @@ import { TDLFilter } from "./TDLFilter";
 import { TDLAddTaskForm } from "./TDLAddTaskForm";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { defaultTheme } from "../../styles/Theme.styled";
+import { Button } from "../Button";
 
 export type TDLPropsType = {
   title: string;
@@ -14,6 +15,7 @@ export type TDLPropsType = {
   addTask: (idTDL: string, newTask: string) => void;
   changeStatusTask: (idTDL: string, idTask: string, value: boolean) => void;
   changeFilter: (idTDL: string, filter: string) => void;
+  removeTDL: (idTDL: string) => void;
 };
 
 export type TaskType = {
@@ -40,8 +42,19 @@ export function TDL(props: TDLPropsType) {
   });
 
   return (
-    <ToDoListWrapper id={props.id}>
-      <h2>{props.title}</h2>
+    <TDLWrapper id={props.id}>
+      <TDLHeader>
+        <h2>{props.title}</h2>
+        <Button
+          title={"-"}
+          onclick={() => props.removeTDL(props.id)}
+          styled={{
+            width: "20px",
+            height: "20px",
+            backgroundColor: `${defaultTheme.color.bgColor.main}`,
+          }}
+        />
+      </TDLHeader>
       <TDLAddTaskForm
         addTask={(newTask: string) => props.addTask(props.id, newTask)}
       />
@@ -52,11 +65,11 @@ export function TDL(props: TDLPropsType) {
         changeFilter={(filter: string) => props.changeFilter(props.id, filter)}
         filterStatus={props.filterStatus}
       />
-    </ToDoListWrapper>
+    </TDLWrapper>
   );
 }
 
-const ToDoListWrapper = styled.li`
+const TDLWrapper = styled.li`
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -65,4 +78,10 @@ const ToDoListWrapper = styled.li`
   background-color: ${defaultTheme.color.bgColor.secondary};
   border-radius: 1rem;
   padding: 15px;
+`;
+
+const TDLHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;

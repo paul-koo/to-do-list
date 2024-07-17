@@ -65,6 +65,12 @@ export function Main() {
     setTasks({ ...tasks, [newId]: [] });
   }
 
+  function removeTDL(idTDL: string) {
+    setData(data.filter((tdl) => tdl.id !== idTDL));
+    delete tasks[idTDL];
+    setTasks({ ...tasks });
+  }
+
   function changeFilter(idTDL: string, filter: string) {
     setData(
       data.map((tdl) => (tdl.id === idTDL ? { ...tdl, filter: filter } : tdl))
@@ -88,6 +94,7 @@ export function Main() {
         addTask={addTask}
         changeStatusTask={changeStatusTask}
         changeFilter={changeFilter}
+        removeTDL={removeTDL}
       />
     );
   });
