@@ -5,6 +5,7 @@ import { TDLAddTaskForm } from "./TDLAddTaskForm";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { defaultTheme } from "../../styles/Theme.styled";
 import { Button } from "../Button";
+import { TaskType } from "../../layout/main/Main";
 
 export type TDLPropsType = {
   title: string;
@@ -16,12 +17,6 @@ export type TDLPropsType = {
   changeStatusTask: (idTDL: string, idTask: string, value: boolean) => void;
   changeFilter: (idTDL: string, filter: string) => void;
   removeTDL: (idTDL: string) => void;
-};
-
-export type TaskType = {
-  id: string;
-  title: string;
-  isDone: boolean;
 };
 
 export function TDL(props: TDLPropsType) {

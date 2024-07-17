@@ -6,16 +6,27 @@ import { AddNewTDLForm } from "./addNewTDLForm/AddNewTDLForm";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { defaultTheme } from "../../styles/Theme.styled";
 
+export type TaskType = {
+  id: string;
+  title: string;
+  isDone: boolean;
+};
+type TasksStateType = {
+  [key: string]: Array<TaskType>;
+};
+
+type TodolistsStateType = Array<{ id: string; title: string; filter: string }>;
+
 export function Main() {
   let idTodolist1 = uuidv4();
   let idTodolist2 = uuidv4();
 
-  const [data, setData] = useState([
+  const [todolists, setTodolists] = useState<TodolistsStateType>([
     { id: idTodolist1, title: "What to reed", filter: "all" },
     { id: idTodolist2, title: "What to write", filter: "all" },
   ]);
 
-  const [tasks, setTasks] = useState({
+  const [tasks, setTasks] = useState<TasksStateType>({
     [idTodolist1]: [
       { id: uuidv4(), title: "HTML&CSS", isDone: false },
       { id: uuidv4(), title: "JS", isDone: false },
@@ -59,25 +70,27 @@ export function Main() {
 
   function addTDL(TDLTitle: string) {
     let newId = uuidv4();
-    const newData = [...data];
+    const newData = [...todolists];
     newData.push({ id: newId, title: TDLTitle, filter: "all" });
-    setData(newData);
+    setTodolists(newData);
     setTasks({ ...tasks, [newId]: [] });
   }
 
   function removeTDL(idTDL: string) {
-    setData(data.filter((tdl) => tdl.id !== idTDL));
+    setTodolists(todolists.filter((tdl) => tdl.id !== idTDL));
     delete tasks[idTDL];
     setTasks({ ...tasks });
   }
 
   function changeFilter(idTDL: string, filter: string) {
-    setData(
-      data.map((tdl) => (tdl.id === idTDL ? { ...tdl, filter: filter } : tdl))
+    setTodolists(
+      todolists.map((tdl) =>
+        tdl.id === idTDL ? { ...tdl, filter: filter } : tdl
+      )
     );
   }
 
-  const ToDoLists = data.map((tdl) => {
+  const ToDoLists = todolists.map((tdl) => {
     let filtredTask = tasks[tdl.id];
     if (tdl.filter === "active")
       filtredTask = filtredTask.filter((task) => !task.isDone);
