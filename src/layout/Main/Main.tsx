@@ -8,34 +8,51 @@ import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { defaultTheme } from "../../styles/Theme.styled";
 
 export function Main() {
-  const [data, setData] = useState(dataToDoLists);
+  let idTodolist1 = uuidv4();
+  let idTodolist2 = uuidv4();
+
+  const [data, setData] = useState([
+    { id: idTodolist1, title: "What to reed", filter: "all" },
+    { id: idTodolist2, title: "What to write", filter: "all" },
+  ]);
+
+  const [tasks, setTasks] = useState({
+    [idTodolist1]: [
+      { id: uuidv4(), title: "HTML&CSS", isDone: false },
+      { id: uuidv4(), title: "JS", isDone: false },
+      { id: uuidv4(), title: "ReactJS", isDone: false },
+      { id: uuidv4(), title: "Redux", isDone: false },
+    ],
+    [idTodolist2]: [
+      { id: uuidv4(), title: "Styled", isDone: false },
+      { id: uuidv4(), title: "JS", isDone: false },
+      { id: uuidv4(), title: "ReactJS", isDone: false },
+      { id: uuidv4(), title: "Node", isDone: false },
+    ],
+  });
 
   const [listRef] = useAutoAnimate();
 
-  function removeTask(idTDL: string, idTask: string | number) {
-    setData(
-      data.map((tdl) => {
-        if (tdl.idTDL === idTDL) {
-          tdl.tasks = tdl.tasks.filter(
-            (task) => String(task.id) !== String(idTask)
-          );
-        }
-        return tdl;
-      })
-    );
+  function removeTask(idTDL: string, idTask: string) {
+    setTasks({
+      ...tasks,
+      idTDL: tasks[idTDL].filter((task) => idTask !== task.id),
+    });
   }
 
   function addTask(idTDL: string, newTask: string) {
-    setData(
-      data.map((tdl) => {
-        if (tdl.idTDL === idTDL)
-          tdl.tasks = [
-            { id: uuidv4(), title: newTask, isDone: false },
-            ...tdl.tasks,
-          ];
-        return tdl;
-      })
-    );
+    const task = { id: uuidv4(), title: newTask, isDone: false };
+    setTasks({ ...tasks, [idTDL]: [...tasks[idTDL], task] });
+    // setData(
+    //   data.map((tdl) => {
+    //     if (tdl.idTDL === idTDL)
+    //       tdl.tasks = [
+    //         { id: uuidv4(), title: newTask, isDone: false },
+    //         ...tdl.tasks,
+    //       ];
+    //     return tdl;
+    //   })
+    // );
   }
 
   function changeStatusTask(
@@ -43,40 +60,60 @@ export function Main() {
     idTask: string | number,
     value: boolean
   ) {
-    const newStatus = data.map((tdl) => {
-      if (tdl.idTDL === idTDL) {
-        tdl.tasks = tdl.tasks.map((task) => {
-          if (task.id === idTask) task.isDone = value;
-          return task;
-        });
-      }
-      return tdl;
+    setTasks({
+      ...tasks,
+      [idTDL]: tasks[idTDL].map((task) =>
+        task.id === idTask ? { ...task, isDone: value } : task
+      ),
     });
-    setData(newStatus);
-    console.log(newStatus);
+    // const newStatus = data.map((tdl) => {
+    //   if (tdl.idTDL === idTDL) {
+    //     tdl.tasks = tdl.tasks.map((task) => {
+    //       if (task.id === idTask) task.isDone = value;
+    //       return task;
+    //     });
+    //   }
+    //   return tdl;
+    // });
+    // setData(newStatus);
+    // console.log(newStatus);
   }
 
   function addTDL(TDLTitle: string) {
-    setData([
-      ...data,
-      {
-        titleToDoList: TDLTitle,
-        idTDL: uuidv4(),
-        tasks: [],
-      },
-    ]);
-    console.log(data);
+    // setData([
+    //   ...data,
+    //   {
+    //     titleToDoList: TDLTitle,
+    //     idTDL: uuidv4(),
+    //     tasks: [],
+    //   },
+    // ]);
+    // console.log(data);
   }
 
-  const ToDoLists = data.map((elem) => {
+  function changeFilter(idTDL: string, filter: string) {
+    setData(
+      data.map((tdl) => (tdl.id === idTDL ? { ...tdl, filter: filter } : tdl))
+    );
+  }
+
+  const ToDoLists = data.map((tdl) => {
+    let filtredTask = tasks[tdl.id];
+    if (tdl.filter === "active")
+      filtredTask = filtredTask.filter((task) => !task.isDone);
+    if (tdl.filter === "completed")
+      filtredTask = filtredTask.filter((task) => task.isDone);
+
     return (
       <TDL
-        idTDL={elem.idTDL}
-        titleToDoList={elem.titleToDoList}
-        tasks={elem.tasks}
+        id={tdl.id}
+        titleToDoList={tdl.title}
+        tasks={filtredTask}
+        filter={tdl.filter}
         removeTask={removeTask}
         addTask={addTask}
         changeStatusTask={changeStatusTask}
+        changeFilter={changeFilter}
       />
     );
   });

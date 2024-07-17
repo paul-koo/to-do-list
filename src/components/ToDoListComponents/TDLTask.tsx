@@ -5,11 +5,11 @@ import { ChangeEvent } from "react";
 import { defaultTheme } from "../../styles/Theme.styled";
 
 export type TDLTaskPropsType = {
-  id: number | string;
+  id: string;
   title: string;
   isDone: boolean;
-  removeTask: (idTask: number | string) => void;
-  changeStatusTask: (idTask: string | number, value: boolean) => void;
+  removeTask: (idTask: string) => void;
+  changeStatusTask: (idTask: string, value: boolean) => void;
 };
 
 export function TDLTask(props: TDLTaskPropsType) {

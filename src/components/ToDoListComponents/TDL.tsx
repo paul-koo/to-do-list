@@ -9,19 +9,17 @@ import { defaultTheme } from "../../styles/Theme.styled";
 
 export type TDLPropsType = {
   titleToDoList: string;
-  idTDL: string;
+  id: string;
   tasks: Array<TaskType>;
-  removeTask: (idTDL: string, idTask: number | string) => void;
+  filter: string;
+  removeTask: (idTDL: string, idTask: string) => void;
   addTask: (idTDL: string, newTask: string) => void;
-  changeStatusTask: (
-    idTDL: string,
-    idTask: string | number,
-    value: boolean
-  ) => void;
+  changeStatusTask: (idTDL: string, idTask: string, value: boolean) => void;
+  changeFilter: (idTDL: string, filter: string) => void;
 };
 
 export type TaskType = {
-  id: number | string;
+  id: string;
   title: string;
   isDone: boolean;
 };
@@ -49,19 +47,19 @@ export function TDL(props: TDLPropsType) {
         id={elem.id}
         title={elem.title}
         isDone={elem.isDone}
-        removeTask={(idTask) => props.removeTask(props.idTDL, idTask)}
-        changeStatusTask={(idTask: string | number, value: boolean) =>
-          props.changeStatusTask(props.idTDL, idTask, value)
+        removeTask={(idTask) => props.removeTask(props.id, idTask)}
+        changeStatusTask={(idTask: string, value: boolean) =>
+          props.changeStatusTask(props.id, idTask, value)
         }
       />
     );
   });
 
   return (
-    <ToDoListWrapper id={props.idTDL}>
+    <ToDoListWrapper id={props.id}>
       <TDLTitle title={props.titleToDoList} />
       <TDLAddTaskForm
-        addTask={(newTask: string) => props.addTask(props.idTDL, newTask)}
+        addTask={(newTask: string) => props.addTask(props.id, newTask)}
       />
       <ul ref={listRef}>
         {toDoListTasksList.length === 0 ? "No tasks" : toDoListTasksList}
