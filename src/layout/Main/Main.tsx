@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { TDL } from "../../components/ToDoListComponents/TDL";
 import { useState } from "react";
-import { dataToDoLists } from "../../data/dataToDoList";
 import { v4 as uuidv4 } from "uuid";
 import { AddNewTDLForm } from "./addNewTDLForm/AddNewTDLForm";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
@@ -43,16 +42,6 @@ export function Main() {
   function addTask(idTDL: string, newTask: string) {
     const task = { id: uuidv4(), title: newTask, isDone: false };
     setTasks({ ...tasks, [idTDL]: [...tasks[idTDL], task] });
-    // setData(
-    //   data.map((tdl) => {
-    //     if (tdl.idTDL === idTDL)
-    //       tdl.tasks = [
-    //         { id: uuidv4(), title: newTask, isDone: false },
-    //         ...tdl.tasks,
-    //       ];
-    //     return tdl;
-    //   })
-    // );
   }
 
   function changeStatusTask(
@@ -66,17 +55,6 @@ export function Main() {
         task.id === idTask ? { ...task, isDone: value } : task
       ),
     });
-    // const newStatus = data.map((tdl) => {
-    //   if (tdl.idTDL === idTDL) {
-    //     tdl.tasks = tdl.tasks.map((task) => {
-    //       if (task.id === idTask) task.isDone = value;
-    //       return task;
-    //     });
-    //   }
-    //   return tdl;
-    // });
-    // setData(newStatus);
-    // console.log(newStatus);
   }
 
   function addTDL(TDLTitle: string) {
