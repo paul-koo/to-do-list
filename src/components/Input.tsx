@@ -31,7 +31,7 @@ export type StyledPropsType = {
     border?: string;
 };
 
-export function Input(props: InputPropsType) {
+export function Inputt(props: InputPropsType) {
     return (
         <InputStyled
             type={props.type}

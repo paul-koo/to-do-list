@@ -6,6 +6,7 @@ import { useAutoAnimate } from '@formkit/auto-animate/react';
 import { defaultTheme } from '../../styles/Theme.styled';
 import { Button } from '../Button';
 import { TaskType } from '../../layout/main/Main';
+import { EditableSpan } from '../EditableSpan';
 
 export type TDLPropsType = {
     title: string;
@@ -18,6 +19,7 @@ export type TDLPropsType = {
     changeFilter: (idTDL: string, filter: string) => void;
     removeTDL: (idTDL: string) => void;
     changeTaskTitle: (idTDL: string, idTask: string, newTtile: string) => void;
+    changeTodolistTitle: (idTDL: string, newTtile: string) => void;
 };
 
 export function TDL(props: TDLPropsType) {
@@ -26,6 +28,7 @@ export function TDL(props: TDLPropsType) {
     const toDoListTasksList = props.tasks.map((elem) => {
         return (
             <TDLTask
+                key={elem.id}
                 id={elem.id}
                 title={elem.title}
                 isDone={elem.isDone}
@@ -43,7 +46,12 @@ export function TDL(props: TDLPropsType) {
     return (
         <TDLWrapper id={props.id}>
             <TDLHeader>
-                <h2>{props.title}</h2>
+                <EditableSpan
+                    value={props.title}
+                    callbackChange={(newTtile: string) => {
+                        props.changeTodolistTitle(props.id, newTtile);
+                    }}
+                />
                 <Button
                     title={'-'}
                     onclick={() => props.removeTDL(props.id)}

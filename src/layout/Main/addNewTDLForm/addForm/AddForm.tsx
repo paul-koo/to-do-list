@@ -1,6 +1,5 @@
 import styled, { css } from 'styled-components';
 import { Button } from '../../../../components/Button';
-import { Input } from '../../../../components/Input';
 import { ChangeEvent, KeyboardEvent, useState } from 'react';
 import { defaultTheme } from '../../../../styles/Theme.styled';
 
@@ -34,13 +33,13 @@ export function AddForm(props: AddFormPropsType) {
 
     return (
         <AddFormWrapper state={props.state}>
-            <Input
-                value={inputState}
+            <input
                 type={'text'}
-                callbackOnChange={InputHandler}
+                value={inputState}
+                onChange={InputHandler}
                 placeholder={inputCorrect ? '' : 'Error'}
-                callbackOnKeyUp={addBtnOnKeyUpHandler}
-            ></Input>
+                onKeyUp={addBtnOnKeyUpHandler}
+            />
             <ControlPanel>
                 <Button
                     title="Add"

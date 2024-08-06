@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Button } from '../Button';
-import { Input } from '../Input';
+// import { Input } from '../Input';
 import { ChangeEvent } from 'react';
 import { defaultTheme } from '../../styles/Theme.styled';
 import { EditableSpan } from '../EditableSpan';
@@ -18,7 +18,7 @@ export function TDLTask(props: TDLTaskPropsType) {
     return (
         <Li isDone={props.isDone}>
             <Label>
-                <Input
+                {/* <Input
                     type={'checkbox'}
                     checked={props.isDone}
                     callbackOnChange={(
@@ -29,12 +29,21 @@ export function TDLTask(props: TDLTaskPropsType) {
                             event.currentTarget.checked
                         );
                     }}
+                /> */}
+                <input
+                    type={'checkbox'}
+                    checked={props.isDone}
+                    onChange={(event: ChangeEvent<HTMLInputElement>) => {
+                        props.changeStatusTask(
+                            props.id,
+                            event.currentTarget.checked
+                        );
+                    }}
                 />
             </Label>
-            {/* <p>{props.title}</p> */}
             <EditableSpan
                 value={props.title}
-                callback={props.changeTaskTitle}
+                callbackChange={props.changeTaskTitle}
             />
             <Button
                 title={'-'}

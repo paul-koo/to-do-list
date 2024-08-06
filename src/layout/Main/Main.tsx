@@ -5,7 +5,6 @@ import { v4 as uuidv4 } from 'uuid';
 import { AddNewTDLForm } from './addNewTDLForm/AddNewTDLForm';
 import { useAutoAnimate } from '@formkit/auto-animate/react';
 import { defaultTheme } from '../../styles/Theme.styled';
-import { title } from 'process';
 
 export type TaskType = {
     id: string;

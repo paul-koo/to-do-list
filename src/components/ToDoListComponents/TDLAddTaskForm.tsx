@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { Button } from '../Button';
 import { ChangeEvent, KeyboardEvent, useState } from 'react';
-import { Input } from '../Input';
 import { defaultTheme } from '../../styles/Theme.styled';
 
 type TDLAddTaskFormPropsType = {
@@ -33,16 +32,15 @@ export function TDLAddTaskForm(props: TDLAddTaskFormPropsType) {
 
     return (
         <TDLAddTaskFormWrapper>
-            <Input
-                value={input}
+            <input
                 type={'text'}
+                value={input}
                 placeholder={inputCorrect ? '' : 'Error'}
-                callbackOnChange={onChangeInputHandler}
-                callbackOnKeyUp={onKeyUpInputHandler}
-                callbackOnBlur={() => {
+                onChange={onChangeInputHandler}
+                onKeyUp={onKeyUpInputHandler}
+                onBlur={() => {
                     setInputCorrect(true);
                 }}
-                // styled={{ width: "100%" }}
             />
             <Button
                 title="+"
